@@ -55,11 +55,27 @@
         <div class="col">
 
         </div>
-        <div class="col d-grid">
-            First Name:<input type="text" placeholder="Enter Your First Name">
-            Last Name:<input type="text" placeholder="Enter Your Last Name">
-            Email:<input type="text" placeholder="example@email.com">
-            Message:<input type="text" placeholder="Your Message">
+        <div class="col">
+            <form action="https://formspree.io/f/mvojjepw"method="POST" class="d-grid">
+            <label>
+                Your First Name:
+                <input type="text" name="First Name" required>
+              </label>
+            <label>
+                Your Last Name:
+                <input type="text" name="Last Name" required>
+              </label>
+            <label>
+                Your Email:
+                <input type="email" name="email" required>
+              </label>
+              <label>
+                Your Message:
+                <textarea name="message" required ></textarea>
+              </label>
+              <!-- your other form fields go here -->
+              <button type="submit">Send</button>
+            </form>
         </div>
       </div>
 
