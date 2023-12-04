@@ -26,12 +26,18 @@ h2{
     /* background-size: cover; */
 /* } */
 .main{
-    margin-bottom: 27rem;
+    margin-bottom: 4.5rem;
 }
 
 .aboutimage{
     width: 20rem;
     aspect-ratio: 1/1;
+}
+
+[alt="homepage"]{
+    margin-top: 40px;
+    width: 25rem;
+    border-radius: 20%;
 }
 
 footer{
