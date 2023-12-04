@@ -28,3 +28,9 @@ h2{
 .main{
     margin-bottom: 27rem;
 }
+
+footer{
+    text-align: center;
+    background-color: rgb(228, 228, 228);
+    padding: 20px;
+}
