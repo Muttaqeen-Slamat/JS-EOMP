@@ -101,9 +101,12 @@ search.addEventListener('keyup', ()=>{
 
 let sort = document.querySelector('[product-sort]')
 
-function sorting(){
-    products.sort((a,b) => a.name - b.name)
-    displayProducts()
+function sorting() {
+    products.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+    });
+    displayProducts();
 }
+
 
 sort.addEventListener('click', sorting)
