@@ -66,3 +66,15 @@ footer{
     font-size: larger;
     margin-top: 15px;
 }
+
+.card{
+    text-align: center;
+    width: 18rem;
+}
+
+[featured-products]{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+}
