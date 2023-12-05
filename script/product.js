@@ -1,2 +1,71 @@
 //
 document.querySelector(['#year']).textContent = new Date().getFullYear()
+
+
+let products = JSON.parse(localStorage.getItem('products')) ?
+JSON.parse(localStorage.getItem('products')):localStorage.setItem('products', JSON.stringify(
+    [
+        {
+            id: 1,
+            name: 'Logitech G915',
+            price: 250,
+            image: 'https://i.postimg.cc/W40F76VW/Logitech-G915.png',
+            spec: 'Tenkeyless, Wireless, Mechanical, Low Profile, Switch Options, LIghtsync RGB, Tactile'
+        },
+        {
+            id: 2,
+            name: 'Higround BLACKICE',
+            price: 500,
+            image: 'https://i.postimg.cc/kgmRcQWh/Screenshot-2023-12-05-092527.png',
+            spec: '65% Keyboard, Wireless, Mechanical, Hot Swappable Switches, PBT Keycaps, Dedicated Arrow Keys, White Flame Switch'
+        },
+        {
+            id: 3,
+            name: 'Corsair K100 - Midnight Gold',
+            price: 500,
+            image: 'https://i.postimg.cc/SNzbx1N2/Screenshot-2023-12-05-094839.png',
+            spec: 'Aluminum design, RGB, Corsair OPX Switches, Media Control, ICUE Wheel, Linear Key Switches, 1.0mm Actuation, Macro Keys'
+        },
+        {
+            id: 4,
+            name: 'Da Vinci Resolve Editor',
+            price: 500,
+            image: 'https://i.postimg.cc/jjN17c88/Screenshot-2023-12-05-102115.png',
+            spec: 'Search Dial Control, Wired USB Type-C or Wireless, USB Hub, Metal Design, Dedicated Keys, Design for Desktop'
+        },
+        {
+            id: 5,
+            name: 'Razer Huntsman Mini',
+            price: 500,
+            image: 'https://i.postimg.cc/NjV5f3jr/Razer-Huntsman-mini.jpg',
+            spec: ' 60%, Wired, Onboard Memory, PBT Keycaps, Clicky Optical Switches, Chroma RGB Lightning'
+        }
+    ]
+))
+
+let productsWrapper = document.querySelector('[featured-products]')
+
+function displayProducts(){
+    productsWrapper.innerHTML = ''
+    try{
+        if(products){
+            products.forEach( products =>{
+                productsWrapper.innerHTML += `<div class="card" style="width: 18rem;">
+                <img src="${products.image}" class="card-img-top" alt="${products.id}">
+                <div class="card-body">
+                  <h5 class="card-title">${products.name}</h5>
+                  <p class="card-text">${products.spec}</p>
+                  <button class="btn btn-primary">Cart</button>
+                </div>
+              </div>`
+            })
+        }else {
+            productsWrapper.innerHTML = 'No product'
+        }
+
+    }catch(e){
+        console.log(e.message);
+    }
+
+}
+displayProducts()
