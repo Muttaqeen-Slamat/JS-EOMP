@@ -56,12 +56,12 @@ function displayProducts(){
                   <h5 class="card-title">${products.name}</h5>
                   <p class="card-text">${products.spec}</p>
                   <p>Price: R${products.price}</p>
-                  <button class="btn btn-primary">Cart</button>
+                  <button class="btn btn-primary">Cart<i class="bi bi-cart4"></i></button>
                 </div>
               </div>`
             })
         }else {
-            productsWrapper.innerHTML = 'No product'
+            productsWrapper.innerHTML = 'No Product Was Found'
         }
 
     }catch(e){
@@ -92,7 +92,7 @@ search.addEventListener('keyup', ()=>{
           </div>`
           })  
         }else{
-            displayProducts()
+            productsWrapper.innerHTML = 'No Product Was Found'
         }
     }catch(e){
         console.log(e.message);
@@ -110,3 +110,11 @@ function sorting() {
 
 
 sort.addEventListener('click', sorting)
+
+
+function addToCart(item) {
+    if(item) {
+        purchased.push(item)
+        localStorage.setItem('checkout', JSON.stringify(purchased))
+    }
+} 
