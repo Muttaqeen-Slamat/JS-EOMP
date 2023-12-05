@@ -78,7 +78,7 @@ search.addEventListener('keyup', ()=>{
         let searchItem = products.filter( prod=> {
             return prod.name.toLowerCase().includes(search.value.toLowerCase())
         })
-        if(searchItem){
+        if(searchItem.length > 0){
           productsWrapper.innerHTML = ''
           searchItem.forEach( item =>{
             productsWrapper.innerHTML += `<div class="card">
