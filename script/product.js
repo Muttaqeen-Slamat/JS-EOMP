@@ -79,7 +79,7 @@ search.addEventListener('keyup', ()=>{
             return prod.name.toLowerCase().includes(search.value.toLowerCase())
         })
         if(searchItem){
-          productsWrapper.innerHTML += ''
+          productsWrapper.innerHTML = ''
           searchItem.forEach( item =>{
             productsWrapper.innerHTML += `<div class="card">
             <img src="${item.image}" class="card-img-top" alt="${item.id}">
