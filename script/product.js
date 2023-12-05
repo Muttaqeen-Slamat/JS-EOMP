@@ -98,3 +98,12 @@ search.addEventListener('keyup', ()=>{
         console.log(e.message);
     }
 })
+
+let sort = document.querySelector('[product-sort]')
+
+function sorting(){
+    products.sort((a,b) => a.name - b.name)
+    displayProducts()
+}
+
+sort.addEventListener('click', sorting)
