@@ -42,7 +42,7 @@ JSON.parse(localStorage.getItem('products')):localStorage.setItem('products', JS
         }
     ]
 ))
-
+let checkout = []
 let productsWrapper = document.querySelector('[featured-products]')
 
 function displayProducts(){
@@ -56,12 +56,12 @@ function displayProducts(){
                   <h5 class="card-title">${products.name}</h5>
                   <p class="card-text">${products.spec}</p>
                   <p>Price: R${products.price}</p>
-                  <button class="btn btn-primary">Cart<i class="bi bi-cart4"></i></button>
+                  <button class="btn btn-primary" onclick='addToCart(${JSON.stringify(products)})' ><i class="bi bi-cart4"></i> Cart</button>
                 </div>
               </div>`
             })
         }else {
-            productsWrapper.innerHTML = 'No Product Was Found'
+            productsWrapper.innerHTML = `No Product Was Found`
         }
 
     }catch(e){
@@ -87,12 +87,17 @@ search.addEventListener('keyup', ()=>{
               <h5 class="card-title">${item.name}</h5>
               <p class="card-text">${item.spec}</p>
               <p>Price: R${item.price}</p>
-              <button class="btn btn-primary">Cart</button>
+              <button class="btn btn-primary" onclick='addToCart(${JSON.stringify(item)})'>Cart</button>
             </div>
           </div>`
           })  
         }else{
-            productsWrapper.innerHTML = 'No Product Was Found'
+            productsWrapper.innerHTML = `No Product Was Found
+            <div class="text-center">
+  <div class="spinner-border" role="status">
+    
+  </div>
+</div>`
         }
     }catch(e){
         console.log(e.message);
@@ -112,9 +117,10 @@ function sorting() {
 sort.addEventListener('click', sorting)
 
 
-function addToCart(item) {
-    if(item) {
-        purchased.push(item)
-        localStorage.setItem('checkout', JSON.stringify(purchased))
+
+function addToCart(product) {
+    if(product) {
+        checkout.push(product)
+        localStorage.setItem('checkout', JSON.stringify(checkout))
     }
 } 
