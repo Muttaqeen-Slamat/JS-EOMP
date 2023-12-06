@@ -4,6 +4,7 @@ document.querySelector(['#year']).textContent = new Date().getFullYear()
 let checkout = JSON.parse(localStorage.getItem('checkout'))
 
 let checkoutWrapper = document.querySelector('[featured-checkout]')
+let space = document.querySelector('[space]')
 
 function displayCheckout(){
     checkoutWrapper.innerHTML = ''
@@ -20,7 +21,7 @@ function displayCheckout(){
                   `
             })
         }else{
-            checkoutWrapper.innerHTML = `no items`
+            space.innerHTML = `<div class="text-center">No Items In Cart <i class="bi bi-emoji-frown"></i></div>`
         }
     }catch(e){
         console.log(e.message);
@@ -29,3 +30,13 @@ function displayCheckout(){
 displayCheckout()
 
 let clear = document.querySelector('[clear-table]')
+
+function clearFunc(){
+    checkout.splice()
+}
+
+clear.addEventListener('click', clearFunc)
+
+let group = Object.groupBy(checkout,item => item.name)
+
+console.log(group);
