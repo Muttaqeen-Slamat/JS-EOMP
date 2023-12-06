@@ -42,7 +42,7 @@ JSON.parse(localStorage.getItem('products')):localStorage.setItem('products', JS
         }
     ]
 ))
-let checkout = []
+let checkout = JSON.parse(localStorage.getItem('checkout')) || [];
 let productsWrapper = document.querySelector('[featured-products]')
 
 function displayProducts(){
@@ -124,3 +124,5 @@ function addToCart(product) {
         localStorage.setItem('checkout', JSON.stringify(checkout))
     }
 } 
+
+
