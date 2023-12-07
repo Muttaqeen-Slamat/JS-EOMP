@@ -8,6 +8,7 @@ let space = document.querySelector('[space]')
 
 let group = Object.groupBy(checkout, item => item.name )
 
+
 function displayCheckout(){
     checkoutWrapper.innerHTML = ''
     try{
@@ -17,7 +18,7 @@ function displayCheckout(){
                   <tr>
                     <th scope="row">1</th>
                     <td>${item.name}</td>
-                    <td><input></td>
+                    <td><input id="checkoutinput" type="number"></td>
                     <td>R${item.price}</td>
                   </tr>
                   `

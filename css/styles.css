@@ -78,3 +78,7 @@ footer{
     justify-content: space-evenly;
     gap: 2rem;
 }
+
+#checkoutinput{
+    width: 50px;
+}
