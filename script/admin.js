@@ -1,6 +1,8 @@
 //
 document.querySelector(['#year']).textContent = new Date().getFullYear()
 
+let admin = JSON.parse(localStorage.getItem('products'))
+
 let adminTable = document.querySelector('[admin-staff]')
 
 function adminContent(){
@@ -54,13 +56,13 @@ function adminContent(){
 
 adminContent()
 
-let add = document.querySelector('[admin-add]')
+// let add = document.querySelector('[admin-add]')
 
-function addProduct(){
+// function addProduct(){
 
-}
+// }
 
-add.addEventListener('click',)
+// add.addEventListener('click',)
 
 
 //not working but is the code from products js
@@ -80,13 +82,14 @@ let sort = document.querySelector('[admin-sort]')
 let del = document.querySelector('[admin-delete]')
 
 //for the delete function for admin edits 
+//deletes but even after refresh it stills delete
 function deleteProduct(){
     try{
-        let index = products.findIndex(a =>{
-            return a.name == item.name
+        let index = admin.findIndex(a =>{
+            return a.id == a.id
         })
-        products.splice(index, 1)
-        localStorage.setItem('products', JSON.stringify(products))
+        localStorage.setItem('products', JSON.stringify(admin))
+        admin.splice(index, 1)
     }catch(e){
         console.log(e.message);
     }
@@ -97,3 +100,35 @@ del.addEventListener('click', deleteProduct)
 
 //for adding need a modal to add it to products
 //get reference from the products.js
+
+
+
+
+
+//function for modal to function 
+
+// function updateProduct(item){
+//     try{
+//         this.id = id;
+//         this.make = document.querySelector('[#admin-make${item.id}]').value
+//         this.spec = document.querySelector('[#admin-spec${item.id}]').value
+//         this.amount = document.querySelector('[#admin-amount${item.id}]').value
+//         this.action = document.querySelector('[#admin-action${item.id}]').value
+//         this.image = document.querySelector('[#admin-image${item.id}]').value
+
+//         let itemindex = admin.findIndex((data)=>{
+//             return data.id ===item.id
+//         })
+
+//         console.log(itemindex);
+//         console.log(this);
+
+//         products(itemindex) = Object.assign({}, this);
+//         localStorage.setItem('products',JSON.stringify(products))
+//         console.log(products);
+//         adminContent()
+//         location.reload()
+//     }catch(e){
+//         console.log(e.message);
+//     }
+// }
