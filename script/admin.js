@@ -56,6 +56,12 @@ adminContent()
 
 let add = document.querySelector('[admin-add]')
 
+function addProduct(){
+
+}
+
+add.addEventListener('click',)
+
 
 //not working but is the code from products js
 let sort = document.querySelector('[admin-sort]')
@@ -89,3 +95,5 @@ deleteProduct()
 
 del.addEventListener('click', deleteProduct)
 
+//for adding need a modal to add it to products
+//get reference from the products.js
