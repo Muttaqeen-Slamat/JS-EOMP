@@ -25,7 +25,16 @@ function adminContent(){
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        ...
+                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="recipient-name">${product.name}
+                      </div>
+                      <div class="modal-body">
+                        <label for="recipient-name" class="col-form-label">Specs:</label>
+                        <input type="text" class="form-control" id="recipient-name">${product.spec}
+                      </div>
+                      <div class="modal-body">
+                        <label for="recipient-name" class="col-form-label">Price:</label>
+                        <input type="text" class="form-control" id="recipient-name">${product.price}
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
