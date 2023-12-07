@@ -6,17 +6,19 @@ let checkout = JSON.parse(localStorage.getItem('checkout'))
 let checkoutWrapper = document.querySelector('[featured-checkout]')
 let space = document.querySelector('[space]')
 
+let group = Object.groupBy(checkout, item => item.name )
+
 function displayCheckout(){
     checkoutWrapper.innerHTML = ''
     try{
-        if(checkout){
-            checkout.forEach( items => {
+        if(checkout.length >= 0){
+            checkout.forEach( item => {
                 checkoutWrapper.innerHTML += `
                   <tr>
                     <th scope="row">1</th>
-                    <td>${items.name}</td>
-                    <td>#</td>
-                    <td>R${items.price}</td>
+                    <td>${item.name}</td>
+                    <td><input></td>
+                    <td>R${item.price}</td>
                   </tr>
                   `
             })
@@ -31,12 +33,16 @@ displayCheckout()
 
 let clear = document.querySelector('[clear-table]')
 
-function clearFunc(){
-    checkout.splice()
+function clearBtn() {
+    if (checkout.length > 0) {
+        checkout.splice(0, checkout.length);
+        displayCheckout();
+        clearedCheckout();
+    }
 }
 
-clear.addEventListener('click', clearFunc)
+function clearedCheckout() {
+    localStorage.setItem('checkout', JSON.stringify(checkout));
+}
 
-let group = Object.groupBy(checkout,item => item.name)
-
-console.log(group);
+clear.addEventListener('click', clearBtn);
