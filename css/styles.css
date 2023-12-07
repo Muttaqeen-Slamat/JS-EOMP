@@ -86,3 +86,22 @@ footer{
 #adminImg{
     width: 100px;
 }
+
+#adminEdit{
+    padding: 2px;
+    background-color:rgb(72, 255, 0);
+    aspect-ratio: 1/1;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#adminDelete{
+    padding: 2px;
+    background-color:rgb(255, 0, 0);
+    aspect-ratio: 1/1;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+}
