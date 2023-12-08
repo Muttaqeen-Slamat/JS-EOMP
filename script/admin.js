@@ -1,10 +1,10 @@
 //
 document.querySelector(["#year"]).textContent = new Date().getFullYear();
-
+//defining my product local storage
 let admin = JSON.parse(localStorage.getItem("products"));
 
 let adminTable = document.querySelector("[admin-staff]");
-
+//diplaying the products
 function adminContent() {
   try {
     let products = JSON.parse(localStorage.getItem("products"));
@@ -63,7 +63,7 @@ function adminContent() {
 adminContent();
 
 let sort = document.querySelector("[admin-sort]");
-
+//function for sorting from alphabetical order
 function adminSort() {
   try {
     let products = JSON.parse(localStorage.getItem("products"));
@@ -124,7 +124,7 @@ adminContent();
 //add fixed now adding to products localStorage
 
 let addWrapper = document.querySelector("[new-modal]");
-
+//add a new product to the admin so store will have that value
 function addNewProducts() {
   try {
     let products = JSON.parse(localStorage.getItem("products")) || [];

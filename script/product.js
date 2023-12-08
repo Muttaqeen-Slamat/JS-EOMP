@@ -1,6 +1,6 @@
 //
 document.querySelector(["#year"]).textContent = new Date().getFullYear();
-
+//defining the local storage for my products
 let products = JSON.parse(localStorage.getItem("products"))
   ? JSON.parse(localStorage.getItem("products"))
   : localStorage.setItem(
@@ -48,7 +48,7 @@ let products = JSON.parse(localStorage.getItem("products"))
     );
 let checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 let productsWrapper = document.querySelector("[featured-products]");
-
+//to display my products
 function displayProducts() {
   productsWrapper.innerHTML = "";
   try {
@@ -81,7 +81,7 @@ function displayProducts() {
   }
 }
 displayProducts();
-
+//search ffrom the producst to find an item 
 let search = document.querySelector("[search-product]");
 
 search.addEventListener("keyup", () => {
@@ -118,7 +118,7 @@ search.addEventListener("keyup", () => {
 });
 
 let sort = document.querySelector("[product-sort]");
-
+//sorting function that sorts alphabetically
 function sorting() {
   products.sort((a, b) => {
     return a.name.localeCompare(b.name);
@@ -127,7 +127,7 @@ function sorting() {
 }
 
 sort.addEventListener("click", sorting);
-
+//added to the checkout local storage
 function addToCart(product) {
   if (product) {
     checkout.push(product);
