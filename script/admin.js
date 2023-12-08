@@ -72,14 +72,22 @@ adminContent()
 
 
 //not working but is the code from products js
-let sort = document.querySelector('[admin-sort]')
-// function adminSort() {
-//     product.sort((a, b) => {
-//         return a.name.localeCompare(b.name);
-//     });
-//     adminContent();
-// }
-// sort.addEventListener('click', adminSort)
+let sort = document.querySelector('[admin-sort]');
+
+function adminSort() {
+    try {
+        let products = JSON.parse(localStorage.getItem('products'));
+        products.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
+        localStorage.setItem('products', JSON.stringify(products));
+        adminContent();
+    } catch (e) {
+        console.log(e.message);
+    }
+}
+
+sort.addEventListener('click', adminSort);
 
 
 
