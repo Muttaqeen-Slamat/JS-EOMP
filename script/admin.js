@@ -123,56 +123,74 @@ function updateProduct(itemIndex) {
 
 //add not working 
 
-let addWrapper = document.querySelector('[new-modal]')
+// let addWrapper = document.querySelector('[new-modal]')
 
 
-function addNewProducts() {
-    try {
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-        let item = {
-            id: products.length + 1,
-            name: document.querySelector('#modal-name'),
-            spec: document.querySelector('#modal-spec'),
-            price: document.querySelector('#modal-price'),
-            image: '' // Add a default value for image
-        };
+// function addNewProducts() {
+//     try {
+//         let products = JSON.parse(localStorage.getItem('products')) || [];
+//         let item = {
+//             id: products.length + 1,
+//             name: document.querySelector('#modal-name'),
+//             spec: document.querySelector('#modal-spec'),
+//             price: document.querySelector('#modal-price'),
+//             image: '' // Add a default value for image
+//         };
 
-        addWrapper.innerHTML = ''
+//         addWrapper.innerHTML = ''
 
-        products.push((item) =>{
-          addWrapper.innerHTML +=`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" add-Modal aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">${item.name}</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <label for="recipient-name${i}" class="col-form-label">Name:</label>
-                      <input type="text" class="form-control" id="modal-name${item.name}" value="${item.name}">
-                  </div>
-                  <div class="modal-body">
-                      <label for="recipient-spec${i}" class="col-form-label">Specs:</label>
-                      <input type="text" class="form-control" id="modal-spec${item.name}" value="${item.spec}">
-                  </div>
-                  <div class="modal-body">
-                      <label for="recipient-price${i}" class="col-form-label">Price:</label>
-                      <input type="text" class="form-control" id="modal-price${item.name}" value="${item.price}">
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" onclick='addNewProducts(js)'>Save changes</button>
-                  </div>
-              </div>
-          </div>`
-        })
+//         products.push((item) =>{
+//           addWrapper.innerHTML +=`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" add-Modal aria-hidden="true">
+//           <div class="modal-dialog">
+//               <div class="modal-content">
+//                   <div class="modal-header">
+//                       <h1 class="modal-title fs-5" id="exampleModalLabel">${item.name}</h1>
+//                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//                   </div>
+//                   <div class="modal-body">
+//                       <label for="recipient-name${i}" class="col-form-label">Name:</label>
+//                       <input type="text" class="form-control" id="modal-name${item.name}" value="${item.name}">
+//                   </div>
+//                   <div class="modal-body">
+//                       <label for="recipient-spec${i}" class="col-form-label">Specs:</label>
+//                       <input type="text" class="form-control" id="modal-spec${item.name}" value="${item.spec}">
+//                   </div>
+//                   <div class="modal-body">
+//                       <label for="recipient-price${i}" class="col-form-label">Price:</label>
+//                       <input type="text" class="form-control" id="modal-price${item.name}" value="${item.price}">
+//                   </div>
+//                   <div class="modal-footer">
+//                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+//                       <button type="button" class="btn btn-primary" onclick='addNewProducts(js)'>Save changes</button>
+//                   </div>
+//               </div>
+//           </div>`
+//         })
 
         
 
-        products.push(item);
-        localStorage.setItem('products', JSON.stringify(products));
-        adminContent();
-    } catch (error) {
-        console.log(error.message);
-    }
+//         products.push(item);
+//         localStorage.setItem('products', JSON.stringify(products));
+//         adminContent();
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
+function addNewProducts() {
+  try {
+      let products = JSON.parse(localStorage.getItem('products')) || [];
+      let item = {
+          id: products.length + 1,
+          name: document.querySelector('#modal-name').value,
+          spec: document.querySelector('#modal-spec').value,
+          price: document.querySelector('#modal-price').value,
+          image: '' // Add a default value for image
+      };
+
+      products.push(item);
+      localStorage.setItem('products', JSON.stringify(products));
+      adminContent();
+  } catch (error) {
+      console.log(error.message);
+  }
 }
