@@ -38,7 +38,7 @@ function displayCheckout() {
                   `;
             }
         } else {
-            space.innerHTML = `<div class="text-center">No Items In Cart <i class="bi bi-emoji-frown"></i></div>`;
+            space.innerHTML = `<div class="text-center">No Items In Cart ☹️</div>`;
         }
     } catch (e) {
         console.log(e.message);

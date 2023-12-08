@@ -61,7 +61,12 @@ function displayProducts(){
               </div>`
             })
         }else {
-            productsWrapper.innerHTML = `No Product Was Found`
+            productsWrapper.innerHTML = `No Product Was Found
+            <div class="text-center">
+  <div class="spinner-border" role="status">
+    
+  </div>
+</div>`
         }
 
     }catch(e){
