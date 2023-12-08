@@ -1,17 +1,17 @@
 //
-document.querySelector(['#year']).textContent = new Date().getFullYear()
+document.querySelector(["#year"]).textContent = new Date().getFullYear();
 
-let admin = JSON.parse(localStorage.getItem('products'))
+let admin = JSON.parse(localStorage.getItem("products"));
 
-let adminTable = document.querySelector('[admin-staff]')
+let adminTable = document.querySelector("[admin-staff]");
 
 function adminContent() {
   try {
-      let products = JSON.parse(localStorage.getItem('products'));
-      adminTable.innerHTML = '';
+    let products = JSON.parse(localStorage.getItem("products"));
+    adminTable.innerHTML = "";
 
-      products.forEach((product, i) => {
-          adminTable.innerHTML += `
+    products.forEach((product, i) => {
+      adminTable.innerHTML += `
           <tr class="text-center">
               <td>${product.name}</td>
               <td><img src="${product.image}" id="adminImg"></td>
@@ -54,97 +54,96 @@ function adminContent() {
                   </div>
               </div>
           </div>`;
-      });
+    });
   } catch (e) {
-      console.log(e.message);
+    console.log(e.message);
   }
 }
 
-adminContent()
+adminContent();
 
-
-let sort = document.querySelector('[admin-sort]');
+let sort = document.querySelector("[admin-sort]");
 
 function adminSort() {
-    try {
-        let products = JSON.parse(localStorage.getItem('products'));
-        products.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-        });
-        localStorage.setItem('products', JSON.stringify(products));
-        adminContent();
-    } catch (e) {
-        console.log(e.message);
-    }
+  try {
+    let products = JSON.parse(localStorage.getItem("products"));
+    products.sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+    localStorage.setItem("products", JSON.stringify(products));
+    adminContent();
+  } catch (e) {
+    console.log(e.message);
+  }
 }
 
-sort.addEventListener('click', adminSort);
+sort.addEventListener("click", adminSort);
 
-
-//for the delete function for admin edits 
+//for the delete function for admin edits
 
 function deleteProduct(index) {
   try {
-      let products = JSON.parse(localStorage.getItem('products'));
-      products.splice(index, 1);
-      localStorage.setItem('products', JSON.stringify(products));
-      adminContent();
+    let products = JSON.parse(localStorage.getItem("products"));
+    products.splice(index, 1);
+    localStorage.setItem("products", JSON.stringify(products));
+    adminContent();
   } catch (e) {
-      console.log(e.message);
+    console.log(e.message);
   }
 }
 
-
-//function for modal to function 
+//function for modal to function
 
 function updateProduct(itemIndex) {
   try {
-      let products = JSON.parse(localStorage.getItem('products'));
+    let products = JSON.parse(localStorage.getItem("products"));
 
-      // Get values from the modal inputs
-      let newName = document.querySelector(`#recipient-name-${itemIndex}`).value;
-      let newSpec = document.querySelector(`#recipient-spec-${itemIndex}`).value;
-      let newPrice = document.querySelector(`#recipient-price-${itemIndex}`).value;
+    // Get values from the modal inputs
+    let newName = document.querySelector(`#recipient-name-${itemIndex}`).value;
+    let newSpec = document.querySelector(`#recipient-spec-${itemIndex}`).value;
+    let newPrice = document.querySelector(
+      `#recipient-price-${itemIndex}`
+    ).value;
 
-      // Update the corresponding product in the array
-      products[itemIndex].name = newName;
-      products[itemIndex].spec = newSpec;
-      products[itemIndex].price = newPrice;
+    // Update the corresponding product in the array
+    products[itemIndex].name = newName;
+    products[itemIndex].spec = newSpec;
+    products[itemIndex].price = newPrice;
 
-      // Save the updated products to localStorage
-      localStorage.setItem('products', JSON.stringify(products));
+    // Save the updated products to localStorage
+    localStorage.setItem("products", JSON.stringify(products));
 
-      adminContent();
-      location.reload()
+    adminContent();
+    location.reload();
   } catch (e) {
-      console.log(e.message);
+    console.log(e.message);
   }
-}adminContent()
+}
+adminContent();
 
-//add not working 
+//add fixed now adding to products localStorage
 
-let addWrapper = document.querySelector('[new-modal]');
+let addWrapper = document.querySelector("[new-modal]");
 
 function addNewProducts() {
-    try {
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-        let item = {
-            id: products.length + 1,
-            name: document.querySelector('#modal-name').value,
-            spec: document.querySelector('#modal-spec').value,
-            price: document.querySelector('#modal-price').value,
-            image: document.querySelector('#modal-image').value // Add a default value for image
-        };
+  try {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let item = {
+      id: products.length + 1,
+      name: document.querySelector("#modal-name").value,
+      spec: document.querySelector("#modal-spec").value,
+      price: document.querySelector("#modal-price").value,
+      image: document.querySelector("#modal-image").value, // Add a default value for image
+    };
 
-        // Add the new product to the products array
-        products.push(item);
-        localStorage.setItem('products', JSON.stringify(products));
-        location.reload()
+    // Add the new product to the products array
+    products.push(item);
+    localStorage.setItem("products", JSON.stringify(products));
+    location.reload();
 
-        // Call adminContent to update the table with the new product
-        adminContent();
-    } catch (error) {
-        console.log(error.message);
-    }
+    // Call adminContent to update the table with the new product
+    adminContent();
+  } catch (error) {
+    console.log(error.message);
+  }
 }
-

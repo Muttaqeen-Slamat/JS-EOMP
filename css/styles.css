@@ -1,41 +1,41 @@
 *,
 *::before,
-*::after{
+*::after {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Indie Flower', normal;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css");
 
-h2{
+h2 {
     text-align: center;
 }
 
-.logo{
+.logo {
     width: 8rem;
     aspect-ratio: 1/1;
 }
 
 /* h1{ */
-    /* background-image: url(https://i.postimg.cc/HnpnnBqw/pawel-czerwinski-3k9-PGKWt7ik-unsplash.jpg); */
-    /* background-size: cover; */
+/* background-image: url(https://i.postimg.cc/HnpnnBqw/pawel-czerwinski-3k9-PGKWt7ik-unsplash.jpg); */
+/* background-size: cover; */
 /* } */
-.main{
+.main {
     margin-bottom: 4.5rem;
 }
 
-.aboutimage{
+.aboutimage {
     width: 20rem;
     aspect-ratio: 1/1;
 }
 
-[alt="homepage"]{
+[alt="homepage"] {
     margin-top: 40px;
     width: 21rem;
     height: 11rem;
@@ -47,17 +47,17 @@ a {
     color: black;
 }
 
-form{
+form {
     display: grid;
 }
 
 
 
-.space{
+.space {
     height: 41vh;
 }
 
-footer{
+footer {
     text-align: center;
     background-color: rgb(228, 228, 228);
     padding: 20px;
@@ -68,38 +68,38 @@ footer{
     margin-top: 15px;
 }
 
-.card{
+.card {
     text-align: center;
     width: 18rem;
 }
 
-[featured-products]{
+[featured-products] {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 2rem;
 }
 
-#checkoutinput{
+#checkoutinput {
     width: 50px;
 }
 
-#adminImg{
+#adminImg {
     width: 100px;
 }
 
-#adminEdit{
+#adminEdit {
     padding: 2px;
-    background-color:rgb(72, 255, 0);
+    background-color: rgb(72, 255, 0);
     aspect-ratio: 1/1;
     width: 30px;
     height: 30px;
     border-radius: 5px;
 }
 
-#adminDelete{
+#adminDelete {
     padding: 2px;
-    background-color:rgb(255, 0, 0);
+    background-color: rgb(255, 0, 0);
     aspect-ratio: 1/1;
     width: 30px;
     height: 30px;
@@ -107,13 +107,13 @@ footer{
     color: white;
 }
 
-.contactbutton{
+.contactbutton {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100px;
 }
 
-.empty{
+.empty {
     margin-bottom: 23vh;
 }
