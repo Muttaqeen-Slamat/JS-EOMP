@@ -5,7 +5,7 @@ let checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 
 let checkoutWrapper = document.querySelector("[featured-checkout]");
 let space = document.querySelector("[space]");
-
+let totalPrice = 0
 // Define a simple groupBy function
 Object.groupBy = function (array, keyGetter) {
   const map = new Map();
@@ -25,15 +25,24 @@ let group = Object.groupBy(checkout, (item) => item.name);
 //displaying my added to cart products
 function displayCheckout() {
   checkoutWrapper.innerHTML = "";
+  totalPrice = 0
   try {
     if (checkout.length > 0) {
-      for (const [name, items] of group.entries()) {
+      for (let [name, items] of group.entries()) {
+        let subtotal = items[0].price * items.length;
+        totalPrice += subtotal
         checkoutWrapper.innerHTML += `
                   <tr>
                     <th scope="row">1</th>
                     <td>${name}</td>
                     <td>${items.length}</td>
                     <td>R${items[0].price * items.length}</td>
+                  </tr>
+                  `;
+                  checkoutWrapper.innerHTML += `
+                  <tr>
+                    <th scope="row" colspan="3">Purchase Order Amount Owed</th>
+                    <td>R${totalPrice}</td>
                   </tr>
                   `;
       }
