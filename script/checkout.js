@@ -1,38 +1,49 @@
 //
-document.querySelector(['#year']).textContent = new Date().getFullYear()
+document.querySelector('#year').textContent = new Date().getFullYear();
 
-let checkout = JSON.parse(localStorage.getItem('checkout'))
+let checkout = JSON.parse(localStorage.getItem('checkout')) || [];
 
-let checkoutWrapper = document.querySelector('[featured-checkout]')
-let space = document.querySelector('[space]')
+let checkoutWrapper = document.querySelector('[featured-checkout]');
+let space = document.querySelector('[space]');
 
-let group = Object.groupBy(checkout, item => item.name )
+// Define a simple groupBy function
+Object.groupBy = function (array, keyGetter) {
+    const map = new Map();
+    array.forEach((item) => {
+        const key = keyGetter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
+};
 
+let group = Object.groupBy(checkout, (item) => item.name);
 
-function displayCheckout(){
-    checkoutWrapper.innerHTML = ''
-    try{
-        if(checkout.length >= 0){
-            checkout.forEach( item => {
+function displayCheckout() {
+    checkoutWrapper.innerHTML = '';
+    try {
+        if (checkout.length > 0) {
+            for (const [name, items] of group.entries()) {
                 checkoutWrapper.innerHTML += `
                   <tr>
                     <th scope="row">1</th>
-                    <td>${item.name}</td>
-                    <td><input id="checkoutinput" type="number"></td>
-                    <td>R${item.price}</td>
+                    <td>${name}</td>
+                    <td>${items.length}</td>
+                    <td>R${items[0].price * items.length}</td>
                   </tr>
-                  `
-            })
-        }else{
-            space.innerHTML = `<div class="text-center">No Items In Cart <i class="bi bi-emoji-frown"></i></div>`
+                  `;
+            }
+        } else {
+            space.innerHTML = `<div class="text-center">No Items In Cart <i class="bi bi-emoji-frown"></i></div>`;
         }
-    }catch(e){
+    } catch (e) {
         console.log(e.message);
     }
 }
-displayCheckout()
-
-let clear = document.querySelector('[clear-table]')
 
 function clearBtn() {
     if (checkout.length > 0) {
@@ -46,4 +57,6 @@ function clearedCheckout() {
     localStorage.setItem('checkout', JSON.stringify(checkout));
 }
 
-clear.addEventListener('click', clearBtn);
+document.querySelector('[clear-table]').addEventListener('click', clearBtn);
+
+displayCheckout();
