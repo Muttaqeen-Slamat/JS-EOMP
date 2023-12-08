@@ -5,54 +5,59 @@ let admin = JSON.parse(localStorage.getItem('products'))
 
 let adminTable = document.querySelector('[admin-staff]')
 
-function adminContent(){
-    try{
-        let products = JSON.parse(
-            localStorage.getItem('products')
-        )
-        adminTable.innerHTML = ''
-        products.forEach( (product, i) =>{
-            adminTable.innerHTML += `
-            <tr class="text-center">
-                <td> ${product.name} </td>
-                <td> <img src="${product.image}" id="adminImg"></td>
-                <td> <button id="adminEdit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-magic"></i> </button></td>
-                <td> <button id="adminDelete" admin-delete onclick='deleteProduct(${i})'> <i class="bi bi-trash3"></i> </button>
+function adminContent() {
+  try {
+      let products = JSON.parse(localStorage.getItem('products'));
+      adminTable.innerHTML = '';
 
+      products.forEach((product, i) => {
+          adminTable.innerHTML += `
+          <tr class="text-center">
+              <td>${product.name}</td>
+              <td><img src="${product.image}" id="adminImg"></td>
+              <td>
+                  <button id="adminEdit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${i}">
+                      <i class="bi bi-magic"></i>
+                  </button>
+              </td>
+              <td>
+                  <button id="adminDelete" admin-delete onclick='deleteProduct(${i})'>
+                      <i class="bi bi-trash3"></i>
+                  </button>
+              </td>
+          </tr>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
                       <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">${product.name}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">${product.name}</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <label for="recipient-name" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="recipient-name">${product.name}
+                          <label for="recipient-name-${i}" class="col-form-label">Name:</label>
+                          <input type="text" class="form-control" id="recipient-name-${i}" value="${product.name}">
                       </div>
                       <div class="modal-body">
-                        <label for="recipient-name" class="col-form-label">Specs:</label>
-                        <input type="text" class="form-control" id="recipient-name">${product.spec}
+                          <label for="recipient-spec-${i}" class="col-form-label">Specs:</label>
+                          <input type="text" class="form-control" id="recipient-spec-${i}" value="${product.spec}">
                       </div>
                       <div class="modal-body">
-                        <label for="recipient-name" class="col-form-label">Price:</label>
-                        <input type="text" class="form-control" id="recipient-name">R${product.price}
+                          <label for="recipient-price-${i}" class="col-form-label">Price:</label>
+                          <input type="text" class="form-control" id="recipient-price-${i}" value="${product.price}">
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" onclick='updateProduct(${i})'>Save changes</button>
                       </div>
-                    </div>
                   </div>
-                </div>
-                
-                </td>
-            </tr>`
-        })
-    }catch(e){
-
-    }
+              </div>
+          </div>`;
+      });
+  } catch (e) {
+      console.log(e.message);
+  }
 }
 
 adminContent()
@@ -105,28 +110,26 @@ function deleteProduct(index) {
 
 //function for modal to function 
 
-// function updateProduct(item){
-//     try{
-//         this.id = id;
-//         this.make = document.querySelector('[#admin-make${item.id}]').value
-//         this.spec = document.querySelector('[#admin-spec${item.id}]').value
-//         this.amount = document.querySelector('[#admin-amount${item.id}]').value
-//         this.action = document.querySelector('[#admin-action${item.id}]').value
-//         this.image = document.querySelector('[#admin-image${item.id}]').value
+function updateProduct(itemIndex) {
+  try {
+      let products = JSON.parse(localStorage.getItem('products'));
 
-//         let itemindex = admin.findIndex((data)=>{
-//             return data.id ===item.id
-//         })
+      // Get values from the modal inputs
+      let newName = document.querySelector(`#recipient-name-${itemIndex}`).value;
+      let newSpec = document.querySelector(`#recipient-spec-${itemIndex}`).value;
+      let newPrice = document.querySelector(`#recipient-price-${itemIndex}`).value;
 
-//         console.log(itemindex);
-//         console.log(this);
+      // Update the corresponding product in the array
+      products[itemIndex].name = newName;
+      products[itemIndex].spec = newSpec;
+      products[itemIndex].price = newPrice;
 
-//         products(itemindex) = Object.assign({}, this);
-//         localStorage.setItem('products',JSON.stringify(products))
-//         console.log(products);
-//         adminContent()
-//         location.reload()
-//     }catch(e){
-//         console.log(e.message);
-//     }
-// }
+      // Save the updated products to localStorage
+      localStorage.setItem('products', JSON.stringify(products));
+
+      // Refresh the admin content to reflect the changes
+      adminContent();
+  } catch (e) {
+      console.log(e.message);
+  }
+}
