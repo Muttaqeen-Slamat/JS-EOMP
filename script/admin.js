@@ -133,7 +133,7 @@ function addNewProducts() {
             name: document.querySelector('#modal-name').value,
             spec: document.querySelector('#modal-spec').value,
             price: document.querySelector('#modal-price').value,
-            image: '' // Add a default value for image
+            image: document.querySelector('#modal-image').value // Add a default value for image
         };
 
         // Add the new product to the products array
