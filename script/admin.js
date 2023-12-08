@@ -135,9 +135,8 @@ function updateProduct(itemIndex) {
       // Save the updated products to localStorage
       localStorage.setItem('products', JSON.stringify(products));
 
-      // Refresh the admin content to reflect the changes
       adminContent();
   } catch (e) {
       console.log(e.message);
   }
-}
+}adminContent()
