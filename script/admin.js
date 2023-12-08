@@ -28,7 +28,7 @@ function adminContent() {
           </tr>
 
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal${i}" tabindex="-1" aria-labelledby="exampleModalLabel" add-Modal aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -62,13 +62,12 @@ function adminContent() {
 
 adminContent()
 
-// let add = document.querySelector('[admin-add]')
+
 
 // function addProduct(){
 
-// }
 
-// add.addEventListener('click',)
+
 
 
 //not working but is the code from products js
@@ -140,3 +139,63 @@ function updateProduct(itemIndex) {
       console.log(e.message);
   }
 }adminContent()
+
+//add not working 
+
+let add = document.querySelector('[admin-add]')
+// Adding Products
+debugger
+function addNewProducts() {
+    try {
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        let item = {
+            id: products.length + 1,
+            name: document.querySelector('#recipient-name').value,
+            spec: document.querySelector('#recipient-spec').value,
+            price: document.querySelector('#recipient-price').value,
+            image: '' // Add a default value for image
+        };
+
+        // Append new modal HTML
+        adminTable.innerHTML += `
+        <!-- New Modal -->
+        <div class="modal fade" id="exampleModal${products.length}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">${item.name}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="recipient-name-${products.length}" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="recipient-name-${products.length}" value="${item.name}">
+                    </div>
+                    <div class="modal-body">
+                        <label for="recipient-spec-${products.length}" class="col-form-label">Specs:</label>
+                        <input type="text" class="form-control" id="recipient-spec-${products.length}" value="${item.spec}">
+                    </div>
+                    <div class="modal-body">
+                        <label for="recipient-price-${products.length}" class="col-form-label">Price:</label>
+                        <input type="text" class="form-control" id="recipient-price-${products.length}" value="${item.price}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick='updateProduct(${products.length})'>Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        if (!item.name || !item.spec || !item.price || !item.image) {
+            throw new Error('Empty fields. Please refresh the page.');
+        }
+
+        products.push(item);
+        localStorage.setItem('products', JSON.stringify(products));
+        adminContent();
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+add.addEventListener('click', addNewProducts);
