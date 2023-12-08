@@ -17,7 +17,8 @@ function adminContent(){
                 <td> ${product.name} </td>
                 <td> <img src="${product.image}" id="adminImg"></td>
                 <td> <button id="adminEdit" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-magic"></i> </button></td>
-                <td> <button id="adminDelete" admin-delete> <i class="bi bi-trash3"></i> </button>
+                <td> <button id="adminDelete" admin-delete onclick='deleteProduct(${i})'> <i class="bi bi-trash3"></i> </button>
+
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -82,21 +83,18 @@ let sort = document.querySelector('[admin-sort]')
 let del = document.querySelector('[admin-delete]')
 
 //for the delete function for admin edits 
-//deletes but even after refresh it stills delete
-function deleteProduct(){
-    try{
-        let index = admin.findIndex(a =>{
-            return a.id == a.id
-        })
-        localStorage.setItem('products', JSON.stringify(admin))
-        admin.splice(index, 1)
-    }catch(e){
-        console.log(e.message);
-    }
-}
-deleteProduct()
 
-del.addEventListener('click', deleteProduct)
+function deleteProduct(index) {
+  try {
+      let products = JSON.parse(localStorage.getItem('products'));
+      products.splice(index, 1);
+      localStorage.setItem('products', JSON.stringify(products));
+      adminContent();
+  } catch (e) {
+      console.log(e.message);
+  }
+}
+
 
 //for adding need a modal to add it to products
 //get reference from the products.js
