@@ -63,14 +63,6 @@ function adminContent() {
 adminContent()
 
 
-
-// function addProduct(){
-
-
-
-
-
-//not working but is the code from products js
 let sort = document.querySelector('[admin-sort]');
 
 function adminSort() {
@@ -89,11 +81,6 @@ function adminSort() {
 sort.addEventListener('click', adminSort);
 
 
-
-
-
-let del = document.querySelector('[admin-delete]')
-
 //for the delete function for admin edits 
 
 function deleteProduct(index) {
@@ -106,13 +93,6 @@ function deleteProduct(index) {
       console.log(e.message);
   }
 }
-
-
-//for adding need a modal to add it to products
-//get reference from the products.js
-
-
-
 
 
 //function for modal to function 
@@ -135,6 +115,7 @@ function updateProduct(itemIndex) {
       localStorage.setItem('products', JSON.stringify(products));
 
       adminContent();
+      location.reload()
   } catch (e) {
       console.log(e.message);
   }
@@ -142,53 +123,51 @@ function updateProduct(itemIndex) {
 
 //add not working 
 
-let add = document.querySelector('[admin-add]')
-// Adding Products
-debugger
+let addWrapper = document.querySelector('[new-modal]')
+
+
 function addNewProducts() {
     try {
         let products = JSON.parse(localStorage.getItem('products')) || [];
         let item = {
             id: products.length + 1,
-            name: document.querySelector('#recipient-name').value,
-            spec: document.querySelector('#recipient-spec').value,
-            price: document.querySelector('#recipient-price').value,
+            name: document.querySelector('#modal-name'),
+            spec: document.querySelector('#modal-spec'),
+            price: document.querySelector('#modal-price'),
             image: '' // Add a default value for image
         };
 
-        // Append new modal HTML
-        adminTable.innerHTML += `
-        <!-- New Modal -->
-        <div class="modal fade" id="exampleModal${products.length}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">${item.name}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <label for="recipient-name-${products.length}" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="recipient-name-${products.length}" value="${item.name}">
-                    </div>
-                    <div class="modal-body">
-                        <label for="recipient-spec-${products.length}" class="col-form-label">Specs:</label>
-                        <input type="text" class="form-control" id="recipient-spec-${products.length}" value="${item.spec}">
-                    </div>
-                    <div class="modal-body">
-                        <label for="recipient-price-${products.length}" class="col-form-label">Price:</label>
-                        <input type="text" class="form-control" id="recipient-price-${products.length}" value="${item.price}">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick='updateProduct(${products.length})'>Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+        addWrapper.innerHTML = ''
 
-        if (!item.name || !item.spec || !item.price || !item.image) {
-            throw new Error('Empty fields. Please refresh the page.');
-        }
+        products.push((item) =>{
+          addWrapper.innerHTML +=`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" add-Modal aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">${item.name}</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <label for="recipient-name${i}" class="col-form-label">Name:</label>
+                      <input type="text" class="form-control" id="modal-name${item.name}" value="${item.name}">
+                  </div>
+                  <div class="modal-body">
+                      <label for="recipient-spec${i}" class="col-form-label">Specs:</label>
+                      <input type="text" class="form-control" id="modal-spec${item.name}" value="${item.spec}">
+                  </div>
+                  <div class="modal-body">
+                      <label for="recipient-price${i}" class="col-form-label">Price:</label>
+                      <input type="text" class="form-control" id="modal-price${item.name}" value="${item.price}">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" onclick='addNewProducts(js)'>Save changes</button>
+                  </div>
+              </div>
+          </div>`
+        })
+
+        
 
         products.push(item);
         localStorage.setItem('products', JSON.stringify(products));
@@ -197,5 +176,3 @@ function addNewProducts() {
         console.log(error.message);
     }
 }
-
-add.addEventListener('click', addNewProducts);
