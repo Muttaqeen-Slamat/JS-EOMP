@@ -60,3 +60,7 @@ function clearedCheckout() {
 document.querySelector('[clear-table]').addEventListener('click', clearBtn);
 
 displayCheckout();
+
+function buy(){
+    checkoutWrapper.innerHTML = 'Thank You For Your Purchase'
+}
